@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abogados E Libre | Completá tu Ficha F11</title>
+  <style>
+    :root {
+      --bg-dark: #0b111a;
+      --bg-card: #131c2b;
+      --bg-card-inner: #1a2639;
+      --accent-green: #10b981;
+      --accent-green-hover: #059669;
+      --accent-gold: #f59e0b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #a855f7;
+      --danger: #ef4444;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #26354d;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #16243b 0%, var(--bg-dark) 65%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 48px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 780px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .club-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--accent-green);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    header h1 span {
+      color: var(--accent-green);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* Barra de progreso del plantel */
+    .progress-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .progress-top strong {
+      color: var(--accent-green);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-card-inner);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-green), #34d399);
+      transition: width 0.3s ease;
+    }
+
+    /* Buscador */
+    .search-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .search-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      pointer-events: none;
+      display: flex;
+    }
+
+    #searchInput {
+      width: 100%;
+      background: var(--bg-card-inner);
+      border: 2px solid var(--border-color);
+      color: var(--text-main);
+      padding: 14px 44px 14px 44px;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    #searchInput::placeholder {
+      color: #64748b;
+    }
+
+    .clear-btn {
+      position: absolute;
+      right: 12px;
+      background: #2b3b55;
+      border: none;
+      color: var(--text-main);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .clear-btn:hover {
+      background: #3b4f70;
+    }
+
+    /* Sugerencias desplegables */
+    .suggestions-list {
+      margin-top: 8px;
+      background: var(--bg-card-inner);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      max-height: 270px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .suggestion-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-item:hover {
+      background: rgba(16, 185, 129, 0.15);
+    }
+
+    .suggestion-name {
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .suggestion-num {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-right: 6px;
+      font-weight: 700;
+    }
+
+    /* Etiquetas */
+    .status-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .status-titular {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-incorporacion {
+      background: rgba(56, 189, 248, 0.14);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .status-intermedia {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .status-invitado {
+      background: rgba(168, 85, 247, 0.15);
+      color: #d8b4fe;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+    }
+
+    .status-baja {
+      background: rgba(239, 68, 68, 0.16);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .done-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      white-space: nowrap;
+    }
+
+    /* Botones */
+    .quick-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 10px 15px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent-green);
+      color: #052e16;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-green-hover);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: var(--bg-card-inner);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: #23324b;
+    }
+
+    .btn-gold {
+      background: rgba(245, 158, 11, 0.16);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.38);
+    }
+
+    .btn-gold:hover {
+      background: rgba(245, 158, 11, 0.26);
+    }
+
+    /* Mensaje sin resultados */
+    .empty-state {
+      background: var(--bg-card);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px 20px;
+      text-align: center;
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .empty-state .emoji {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .empty-state h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Tarjeta Editable del Jugador */
+    .player-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #065f46 0%, #0f172a 100%);
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .player-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px solid var(--accent-green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .player-avatar small {
+      font-size: 0.65rem;
+      color: #a7f3d0;
+      margin-top: 3px;
+      font-weight: 700;
+    }
+
+    .player-title h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      align-items: center;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg-card-inner);
+      border: 1.5px solid var(--border-color);
+      color: var(--text-main);
+      padding: 11px 13px;
+      border-radius: var(--radius-md);
+      font-size: 0.96rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .form-actions {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .save-feedback {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #34d399;
+      display: none;
+    }
+
+    /* Panel Exportar JSON para el DT */
+    .export-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 20px;
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .export-box h3 {
+      font-size: 1rem;
+      color: #fbbf24;
+      margin-bottom: 6px;
+    }
+
+    .export-box p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .export-textarea {
+      width: 100%;
+      height: 220px;
+      background: #080d14;
+      color: #a7f3d0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      resize: vertical;
+      margin-bottom: 10px;
+    }
+
+    /* Vista Plantel Completo */
+    .roster-section {
+      display: none;
+      margin-top: 10px;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .roster-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .roster-header h3 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .roster-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+      gap: 12px;
+    }
+
+    .roster-mini-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .roster-mini-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-green);
+    }
+
+    .roster-mini-name {
+      font-weight: 700;
+      font-size: 0.96rem;
+      line-height: 1.25;
+    }
+
+    .roster-mini-pos {
+      font-size: 0.82rem;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .roster-mini-meta {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: auto;
+      padding-top: 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    @media (max-width: 560px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-header {
+        padding: 16px;
+      }
+      .player-avatar {
+        width: 54px;
+        height: 54px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="club-badge">⚽ Lista de Buena Fe · F11</div>
+      <h1>Abogados <span>E</span> Libre</h1>
+      <p>Buscá tu nombre e inicial del apellido para completar y actualizar tu ficha de jugador</p>
+    </header>
+
+    <!-- Progreso de fichas completadas -->
+    <div class="progress-banner">
+      <div class="progress-top">
+        <span>Fichas completadas en este dispositivo:</span>
+        <span><strong id="completedCount">0</strong> de <strong id="totalCount">38</strong></span>
+      </div>
+      <div class="progress-track">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Buscador -->
+    <section class="search-box">
+      <label for="searchInput" class="search-label">
+        Buscate por nombre e inicial del apellido (ej: <em>"Matías M"</em>, <em>"Joaquín I."</em>, <em>"Estanislao B"</em>)
+      </label>
+      <div class="search-input-wrapper">
+        <span class="search-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Escribí tu nombre e inicial..."
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+        />
+        <button type="button" id="clearBtn" class="clear-btn" title="Limpiar búsqueda">✕</button>
+      </div>
+
+      <!-- Sugerencias desplegables -->
+      <div id="suggestionsList" class="suggestions-list"></div>
+
+      <!-- Botones de acción rápida -->
+      <div class="quick-actions">
+        <button type="button" id="toggleRosterBtn" class="btn btn-secondary">
+          📋 Ver plantel completo (38)
+        </button>
+        <button type="button" id="exportBtn" class="btn btn-gold">
+          📦 Exportar datos para el DT
+        </button>
+        <button type="button" id="resetViewBtn" class="btn btn-secondary" style="display: none;">
+          🔄 Limpiar vista
+        </button>
+      </div>
+    </section>
+
+    <!-- Estado sin coincidencias -->
+    <div id="emptyState" class="empty-state">
+      <span class="emoji">🔍</span>
+      <h3>No encontramos ningún jugador con ese dato</h3>
+      <p>Probá escribiendo tu nombre y la primera letra de tu apellido (por ejemplo: <strong>"Matías M"</strong>) o tocá en <strong>"Ver plantel completo"</strong>.</p>
+    </div>
+
+    <!-- Ficha Editable del Jugador -->
+    <article id="playerCard" class="player-card">
+      <div class="card-header">
+        <div class="player-avatar">
+          <span id="cardInitials">MM</span>
+          <small id="cardNumber">#01</small>
+        </div>
+        <div class="player-title">
+          <h2 id="cardFullName">Nombre Completo</h2>
+          <div class="badges-row">
+            <span id="cardStatusBadge" class="status-pill status-titular">Plantel</span>
+            <span id="cardDoneBadge" class="done-pill" style="display: none;">✓ Ficha cargada</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="playerForm" class="card-body">
+        <div class="form-grid">
+          <!-- Apodo -->
+          <div class="form-group">
+            <label for="inputApodo">Apodo (opcional)</label>
+            <input type="text" id="inputApodo" class="form-control" placeholder="Ej: Chepi, El Tanque..." />
+          </div>
+
+          <!-- Edad -->
+          <div class="form-group">
+            <label for="inputEdad">Edad</label>
+            <input type="number" id="inputEdad" class="form-control" min="16" max="75" placeholder="Ej: 31" />
+          </div>
+
+          <!-- Altura aproximada -->
+          <div class="form-group">
+            <label for="inputAltura">Altura aproximada</label>
+            <input type="text" id="inputAltura" class="form-control" placeholder="Ej: 1,78 m" />
+          </div>
+
+          <!-- Pierna hábil -->
+          <div class="form-group">
+            <label for="inputPierna">Pierna hábil</label>
+            <select id="inputPierna" class="form-control">
+              <option value="">Seleccioná...</option>
+              <option value="Derecha">Derecha</option>
+              <option value="Izquierda">Izquierda</option>
+              <option value="Ambas">Ambas</option>
+            </select>
+          </div>
+
+          <!-- Posición preferida -->
+          <div class="form-group">
+            <label for="inputPosPref">Posición preferida</label>
+            <input type="text" id="inputPosPref" class="form-control" placeholder="Ej: Volante central, Lateral izquierdo" />
+          </div>
+
+          <!-- Otra posición donde podría desempeñarse -->
+          <div class="form-group">
+            <label for="inputPosAlt">Otra posición donde podés jugar</label>
+            <input type="text" id="inputPosAlt" class="form-control" placeholder="Ej: Marcador central / Volante interno" />
+          </div>
+
+          <!-- Compromiso / Asistencia -->
+          <div class="form-group full-width">
+            <label for="inputCompromiso">Compromiso / Asistencia (entrenamientos, amistoso semanal, sábado)</label>
+            <select id="inputCompromiso" class="form-control">
+              <option value="">Seleccioná tu compromiso...</option>
+              <option value="Sí, entrena + amistoso semanal + partido del sábado">Sí, entrena + amistoso semanal + partido del sábado</option>
+              <option value="Amistoso semanal + partido del sábado">Amistoso semanal + partido del sábado</option>
+              <option value="Solo partido del sábado">Solo partido del sábado</option>
+              <option value="Disponibilidad variable / por trabajo o estudio">Disponibilidad variable / por trabajo o estudio</option>
+              <option value="Actualmente lesionado / suspendido">Actualmente lesionado / suspendido</option>
+            </select>
+          </div>
+
+          <!-- Hincha de qué equipo es -->
+          <div class="form-group full-width">
+            <label for="inputHincha">¿De qué equipo sos hincha?</label>
+            <input type="text" id="inputHincha" class="form-control" placeholder="Ej: Boca Juniors, River Plate, Patronato..." />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            💾 Guardar mis datos
+          </button>
+          <span id="saveFeedback" class="save-feedback">¡Listo! Tus datos quedaron guardados.</span>
+        </div>
+      </form>
+    </article>
+
+    <!-- Panel de Exportación para el DT -->
+    <section id="exportBox" class="export-box">
+      <h3>📦 Exportar array <code>jugadores</code> actualizado</h3>
+      <p>
+        Copiá este código y reemplazá el bloque <code>const jugadores = [ ... ]</code> en tu <code>index.html</code> de GitHub para consolidar los datos cargados por todos.
+      </p>
+      <textarea id="exportTextarea" class="export-textarea" readonly></textarea>
+      <div class="quick-actions" style="margin-top: 0;">
+        <button type="button" id="copyExportBtn" class="btn btn-primary">📋 Copiar código</button>
+        <button type="button" id="closeExportBtn" class="btn btn-secondary">Cerrar</button>
+      </div>
+    </section>
+
+    <!-- Grilla de Plantel Completo -->
+    <section id="rosterSection" class="roster-section">
+      <div class="roster-header">
+        <h3>Lista de Buena Fe · Abogados E – F11</h3>
+        <span id="rosterCount" class="roster-count">38 jugadores</span>
+      </div>
+      <div id="rosterGrid" class="roster-grid"></div>
+    </section>
+  </div>
+
+  <footer>
+    Abogados E Libre · Autogestión de Ficha Técnica F11
+  </footer>
+
+  <script>
+    /* =========================================================================
+       BASE DE DATOS INICIAL - LISTA DE BUENA FE ABOGADOS E F11
+       ========================================================================= */
+    const JUGADORES_INICIALES = [
+      { numero: 1, nombre: "Matías", apellido: "Montesino", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 2, nombre: "Daian", apellido: "Bravo", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 3, nombre: "Lucas Edgardo", apellido: "Caballero", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 4, nombre: "Octavio", apellido: "Romero", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 5, nombre: "Rafael", apellido: "Villegas", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 6, nombre: "Gonzalo", apellido: "Meglio", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 7, nombre: "Lautaro", apellido: "Ciarrocca", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 8, nombre: "Joaquín", apellido: "Ivanovich", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 9, nombre: "Nicolás", apellido: "Valiero", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 10, nombre: "Jonathan", apellido: "Roskopf", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 11, nombre: "Facundo", apellido: "Díaz", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 12, nombre: "Joaquín", apellido: "Moyano", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 13, nombre: "Amir", apellido: "Ovejero", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 14, nombre: "Estanislao", apellido: "Boleas", apodo: "Chepi", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 15, nombre: "Gaspar", apellido: "Ríos Politi", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 16, nombre: "Gerónimo", apellido: "Ríos Politi", apodo: "", estado: "Lesionado / Suspendido", tipoEstado: "baja", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "Actualmente lesionado / suspendido", hinchaDe: "" },
+      { numero: 17, nombre: "Guillermo", apellido: "Zalazar", apodo: "", estado: "Intermedia - Comparte", tipoEstado: "intermedia", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 18, nombre: "Antonio", apellido: "Solari", apodo: "", estado: "Intermedia - Comparte", tipoEstado: "intermedia", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 19, nombre: "Andrés", apellido: "Meynier", apodo: "", estado: "Plantel", tipoEstado: "titular", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 20, nombre: "Mahatma Ciro Alis", apellido: "Shamsy", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 21, nombre: "Franco", apellido: "Hllede", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 22, nombre: "Alberto", apellido: "Antivero", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 23, nombre: "Ramiro", apellido: "Hundt", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 24, nombre: "Alejandro", apellido: "Díaz", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 25, nombre: "Valentín", apellido: "Lamberti", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 26, nombre: "Franco", apellido: "Aguirre", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 27, nombre: "Federico", apellido: "Acevedo", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 28, nombre: "Lucas", apellido: "Walter", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 29, nombre: "Agustín", apellido: "Peter", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 30, nombre: "Cristian", apellido: "Weber", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 31, nombre: "Matías", apellido: "De Vechio", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 32, nombre: "Santiago", apellido: "Cerini", apodo: "", estado: "Incorporación", tipoEstado: "incorporacion", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 33, nombre: "Tomás", apellido: "Grillo", apodo: "", estado: "Invitado pariente", tipoEstado: "invitado", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 34, nombre: "Agustín", apellido: "Roskopf", apodo: "", estado: "Invitado pariente", tipoEstado: "invitado", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "", hinchaDe: "" },
+      { numero: 35, nombre: "Leandro", apellido: "Duarte", apodo: "", estado: "Lesionado / Suspendido", tipoEstado: "baja", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "Actualmente lesionado / suspendido", hinchaDe: "" },
+      { numero: 36, nombre: "Francisco", apellido: "Bobolini", apodo: "", estado: "Lesionado / Suspendido", tipoEstado: "baja", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "Actualmente lesionado / suspendido", hinchaDe: "" },
+      { numero: 37, nombre: "Martín", apellido: "Panelli", apodo: "", estado: "Lesionado / Suspendido", tipoEstado: "baja", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "Actualmente lesionado / suspendido", hinchaDe: "" },
+      { numero: 38, nombre: "Ariel", apellido: "Muñoz", apodo: "", estado: "Lesionado / Suspendido", tipoEstado: "baja", edad: "", altura: "", posicionPreferida: "", otraPosicion: "", piernaHabil: "", compromiso: "Actualmente lesionado / suspendido", hinchaDe: "" }
+    ];
+
+    const STORAGE_KEY = "abogados_e_libre_f11_fichas_v1";
+
+    function cargarJugadores() {
+      try {
+        const guardado = localStorage.getItem(STORAGE_KEY);
+        if (guardado) {
+          const parsed = JSON.parse(guardado);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.warn("No se pudo leer localStorage:", e);
+      }
+      return JSON.parse(JSON.stringify(JUGADORES_INICIALES));
+    }
+
+    function guardarEnStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(jugadores));
+      } catch (e) {
+        console.warn("No se pudo guardar en localStorage:", e);
+      }
+    }
+
+    let jugadores = cargarJugadores();
+    let jugadorActivoIndex = null;
+
+    /* =========================================================================
+       ELEMENTOS DEL DOM
+       ========================================================================= */
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+    const suggestionsList = document.getElementById("suggestionsList");
+    const emptyState = document.getElementById("emptyState");
+    const playerCard = document.getElementById("playerCard");
+    const playerForm = document.getElementById("playerForm");
+    const saveFeedback = document.getElementById("saveFeedback");
+    const rosterSection = document.getElementById("rosterSection");
+    const rosterGrid = document.getElementById("rosterGrid");
+    const rosterCount = document.getElementById("rosterCount");
+    const toggleRosterBtn = document.getElementById("toggleRosterBtn");
+    const resetViewBtn = document.getElementById("resetViewBtn");
+    const exportBtn = document.getElementById("exportBtn");
+    const exportBox = document.getElementById("exportBox");
+    const exportTextarea = document.getElementById("exportTextarea");
+    const copyExportBtn = document.getElementById("copyExportBtn");
+    const closeExportBtn = document.getElementById("closeExportBtn");
+    const completedCountEl = document.getElementById("completedCount");
+    const totalCountEl = document.getElementById("totalCount");
+    const progressFillEl = document.getElementById("progressFill");
+
+    // Inputs del formulario
+    const inputApodo = document.getElementById("inputApodo");
+    const inputEdad = document.getElementById("inputEdad");
+    const inputAltura = document.getElementById("inputAltura");
+    const inputPierna = document.getElementById("inputPierna");
+    const inputPosPref = document.getElementById("inputPosPref");
+    const inputPosAlt = document.getElementById("inputPosAlt");
+    const inputCompromiso = document.getElementById("inputCompromiso");
+    const inputHincha = document.getElementById("inputHincha");
+
+    /* =========================================================================
+       HELPERS DE BÚSQUEDA Y ESTADO
+       ========================================================================= */
+    function normalizar(texto) {
+      return (texto || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\./g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function obtenerClavesJugador(jugador) {
+      const nom = normalizar(jugador.nombre);
+      const ape = normalizar(jugador.apellido);
+      const inicialApe = ape.charAt(0);
+      const primerNombre = nom.split(" ")[0];
+
+      return {
+        nombreCompleto: `${nom} ${ape}`,
+        apellidoYNombre: `${ape} ${nom}`,
+        nombreEInicial: `${nom} ${inicialApe}`,
+        primerNombreEInicial: `${primerNombre} ${inicialApe}`,
+        soloNombre: nom,
+        soloApellido: ape,
+        apodo: normalizar(jugador.apodo || "")
+      };
+    }
+
+    function buscarJugadores(query) {
+      const q = normalizar(query);
+      if (!q) return [];
+
+      return jugadores.filter((j) => {
+        const claves = obtenerClavesJugador(j);
+        return (
+          claves.nombreEInicial.startsWith(q) ||
+          claves.primerNombreEInicial.startsWith(q) ||
+          claves.nombreCompleto.includes(q) ||
+          claves.apellidoYNombre.includes(q) ||
+          claves.soloNombre.startsWith(q) ||
+          claves.soloApellido.startsWith(q) ||
+          (claves.apodo && claves.apodo.includes(q))
+        );
+      });
+    }
+
+    function estaCompleta(j) {
+      return Boolean(
+        j.posicionPreferida &&
+        j.piernaHabil &&
+        j.compromiso &&
+        j.hinchaDe
+      );
+    }
+
+    function actualizarProgreso() {
+      const total = jugadores.length;
+      const completos = jugadores.filter(estaCompleta).length;
+      const pct = total > 0 ? Math.round((completos / total) * 100) : 0;
+
+      completedCountEl.textContent = completos;
+      totalCountEl.textContent = total;
+      progressFillEl.style.width = `${pct}%`;
+    }
+
+    function obtenerClaseEstado(tipoEstado) {
+      switch (tipoEstado) {
+        case "incorporacion": return "status-incorporacion";
+        case "intermedia": return "status-intermedia";
+        case "invitado": return "status-invitado";
+        case "baja": return "status-baja";
+        default: return "status-titular";
+      }
+    }
+
+    /* =========================================================================
+       CARGAR Y GUARDAR FICHA DEL JUGADOR
+       ========================================================================= */
+    function cargarFichaEnFormulario(jugador) {
+      const idx = jugadores.findIndex((item) => item.numero === jugador.numero);
+      jugadorActivoIndex = idx;
+
+      const iniciales = `${jugador.nombre.charAt(0)}${jugador.apellido.charAt(0)}`.toUpperCase();
+      document.getElementById("cardInitials").textContent = iniciales;
+      document.getElementById("cardNumber").textContent = `#${String(jugador.numero).padStart(2, "0")}`;
+      document.getElementById("cardFullName").textContent = `${jugador.nombre} ${jugador.apellido}`;
+
+      const statusEl = document.getElementById("cardStatusBadge");
+      statusEl.textContent = jugador.estado;
+      statusEl.className = `status-pill ${obtenerClaseEstado(jugador.tipoEstado)}`;
+
+      const doneBadge = document.getElementById("cardDoneBadge");
+      doneBadge.style.display = estaCompleta(jugador) ? "inline-block" : "none";
+
+      inputApodo.value = jugador.apodo || "";
+      inputEdad.value = jugador.edad || "";
+      inputAltura.value = jugador.altura || "";
+      inputPierna.value = jugador.piernaHabil || "";
+      inputPosPref.value = jugador.posicionPreferida || "";
+      inputPosAlt.value = jugador.otraPosicion || "";
+      inputCompromiso.value = jugador.compromiso || "";
+      inputHincha.value = jugador.hinchaDe || "";
+
+      saveFeedback.style.display = "none";
+      emptyState.style.display = "none";
+      rosterSection.style.display = "none";
+      exportBox.style.display = "none";
+      playerCard.style.display = "block";
+      resetViewBtn.style.display = "inline-flex";
+    }
+
+    playerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (jugadorActivoIndex === null || !jugadores[jugadorActivoIndex]) return;
+
+      const j = jugadores[jugadorActivoIndex];
+      j.apodo = inputApodo.value.trim();
+      j.edad = inputEdad.value ? Number(inputEdad.value) : "";
+      j.altura = inputAltura.value.trim();
+      j.piernaHabil = inputPierna.value;
+      j.posicionPreferida = inputPosPref.value.trim();
+      j.otraPosicion = inputPosAlt.value.trim();
+      j.compromiso = inputCompromiso.value;
+      j.hinchaDe = inputHincha.value.trim();
+
+      guardarEnStorage();
+      actualizarProgreso();
+
+      document.getElementById("cardDoneBadge").style.display = estaCompleta(j) ? "inline-block" : "none";
+      saveFeedback.style.display = "inline-block";
+
+      if (rosterSection.style.display === "block") {
+        renderizarPlantelCompleto();
+      }
+    });
+
+    /* =========================================================================
+       SUGERENCIAS Y PLANTEL COMPLETO
+       ========================================================================= */
+    function renderizarSugerencias(resultados) {
+      suggestionsList.innerHTML = "";
+      if (resultados.length === 0) {
+        suggestionsList.style.display = "none";
+        return;
+      }
+
+      resultados.forEach((jugador) => {
+        const item = document.createElement("div");
+        item.className = "suggestion-item";
+        const inicialApe = jugador.apellido.charAt(0).toUpperCase();
+        const apodoTxt = jugador.apodo ? ` "${jugador.apodo}"` : "";
+        const badgeHtml = estaCompleta(jugador)
+          ? `<span class="done-pill">✓ Cargada</span>`
+          : `<span class="status-pill ${obtenerClaseEstado(jugador.tipoEstado)}">${jugador.estado}</span>`;
+
+        item.innerHTML = `
+          <span class="suggestion-name">
+            <span class="suggestion-num">#${String(jugador.numero).padStart(2, "0")}</span>
+            ${jugador.nombre} ${jugador.apellido}${apodoTxt}
+            <small style="color:#94a3b8;">(${jugador.nombre.split(" ")[0]} ${inicialApe}.)</small>
+          </span>
+          ${badgeHtml}
+        `;
+        item.addEventListener("click", () => {
+          searchInput.value = `${jugador.nombre} ${inicialApe}`;
+          suggestionsList.style.display = "none";
+          cargarFichaEnFormulario(jugador);
+        });
+        suggestionsList.appendChild(item);
+      });
+
+      suggestionsList.style.display = "block";
+    }
+
+    function renderizarPlantelCompleto() {
+      rosterGrid.innerHTML = "";
+      rosterCount.textContent = `${jugadores.length} jugadores inscritos`;
+
+      jugadores.forEach((jugador) => {
+        const card = document.createElement("div");
+        card.className = "roster-mini-card";
+        const inicialApe = jugador.apellido.charAt(0).toUpperCase();
+        const posTexto = jugador.posicionPreferida || "Pendiente de completar";
+        const rightTag = estaCompleta(jugador)
+          ? `<span class="done-pill">✓ Lista</span>`
+          : `<span class="status-pill ${obtenerClaseEstado(jugador.tipoEstado)}">${jugador.estado}</span>`;
+
+        card.innerHTML = `
+          <div>
+            <div class="roster-mini-name">#${String(jugador.numero).padStart(2, "0")} · ${jugador.nombre} ${jugador.apellido}</div>
+            <div class="roster-mini-pos" style="margin-top:4px;">${posTexto}</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-top:4px;">
+            <span class="roster-mini-meta">${jugador.nombre.split(" ")[0]} ${inicialApe}.</span>
+            ${rightTag}
+          </div>
+        `;
+        card.addEventListener("click", () => {
+          searchInput.value = `${jugador.nombre} ${inicialApe}`;
+          clearBtn.style.display = "flex";
+          cargarFichaEnFormulario(jugador);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        rosterGrid.appendChild(card);
+      });
+    }
+
+    /* =========================================================================
+       EVENTOS DE BÚSQUEDA Y BOTONES
+       ========================================================================= */
+    searchInput.addEventListener("input", (e) => {
+      const valor = e.target.value;
+      clearBtn.style.display = valor.length > 0 ? "flex" : "none";
+
+      if (valor.trim() === "") {
+        suggestionsList.style.display = "none";
+        emptyState.style.display = "none";
+        return;
+      }
+
+      const resultados = buscarJugadores(valor);
+
+      if (resultados.length === 0) {
+        suggestionsList.style.display = "none";
+        playerCard.style.display = "none";
+        rosterSection.style.display = "none";
+        emptyState.style.display = "block";
+        resetViewBtn.style.display = "inline-flex";
+      } else if (resultados.length === 1) {
+        const q = normalizar(valor);
+        const claves = obtenerClavesJugador(resultados[0]);
+        renderizarSugerencias(resultados);
+        if (
+          q === claves.nombreEInicial ||
+          q === claves.primerNombreEInicial ||
+          q === claves.nombreCompleto ||
+          (claves.apodo && q === claves.apodo)
+        ) {
+          suggestionsList.style.display = "none";
+          cargarFichaEnFormulario(resultados[0]);
+        }
+      } else {
+        emptyState.style.display = "none";
+        renderizarSugerencias(resultados);
+      }
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const resultados = buscarJugadores(searchInput.value);
+        if (resultados.length > 0) {
+          const j = resultados[0];
+          searchInput.value = `${j.nombre} ${j.apellido.charAt(0).toUpperCase()}`;
+          suggestionsList.style.display = "none";
+          cargarFichaEnFormulario(j);
+        }
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      clearBtn.style.display = "none";
+      suggestionsList.style.display = "none";
+      emptyState.style.display = "none";
+      playerCard.style.display = "none";
+      resetViewBtn.style.display = "none";
+      jugadorActivoIndex = null;
+      searchInput.focus();
+    });
+
+    toggleRosterBtn.addEventListener("click", () => {
+      const isVisible = rosterSection.style.display === "block";
+      if (isVisible) {
+        rosterSection.style.display = "none";
+      } else {
+        renderizarPlantelCompleto();
+        playerCard.style.display = "none";
+        emptyState.style.display = "none";
+        suggestionsList.style.display = "none";
+        exportBox.style.display = "none";
+        rosterSection.style.display = "block";
+        resetViewBtn.style.display = "inline-flex";
+      }
+    });
+
+    exportBtn.addEventListener("click", () => {
+      exportTextarea.value = "const JUGADORES_INICIALES = " + JSON.stringify(jugadores, null, 2) + ";";
+      playerCard.style.display = "none";
+      rosterSection.style.display = "none";
+      emptyState.style.display = "none";
+      exportBox.style.display = "block";
+      resetViewBtn.style.display = "inline-flex";
+    });
+
+    copyExportBtn.addEventListener("click", () => {
+      exportTextarea.select();
+      navigator.clipboard?.writeText(exportTextarea.value);
+      copyExportBtn.textContent = "✓ Copiado al portapapeles";
+      setTimeout(() => {
+        copyExportBtn.textContent = "📋 Copiar código";
+      }, 2000);
+    });
+
+    closeExportBtn.addEventListener("click", () => {
+      exportBox.style.display = "none";
+    });
+
+    resetViewBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      clearBtn.style.display = "none";
+      suggestionsList.style.display = "none";
+      emptyState.style.display = "none";
+      playerCard.style.display = "none";
+      rosterSection.style.display = "none";
+      exportBox.style.display = "none";
+      resetViewBtn.style.display = "none";
+      jugadorActivoIndex = null;
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".search-box")) {
+        suggestionsList.style.display = "none";
+      }
+    });
+
+    // Inicializar contador al cargar
+    actualizarProgreso();
+  </script>
+</body>
+</html>
